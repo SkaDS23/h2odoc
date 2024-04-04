@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fonction Main (gen.py) &mdash; Documentation Documentation Expert 0.0.1</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5cd26065"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=d99ca74e"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Paramètres Expert, Fonction Main (gen.py)" href="expert.html" />
+    <link rel="prev" title="Documentation h2oGPT" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Documentation Expert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Fonction Main (gen.py)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="expert.html">Paramètres Expert, Fonction Main (gen.py)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Documentation Expert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Fonction Main (gen.py)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fonction-main-gen-py">
+<h1>Fonction Main (gen.py)<a class="headerlink" href="#fonction-main-gen-py" title="Link to this heading"></a></h1>
+<p>Documentation générale de la fonction Main de gen.py contenant tous les paramètres modifiables de l’application</p>
+<p>Paramètres:</p>
+<ul>
+<li><dl class="simple">
+<dt><strong>load_8bit</strong> (<em>bool</em>):</dt><dd><p>Load model in 8-bit using bitsandbytes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>load_4bit</strong> (<em>bool</em>):</dt><dd><p>Load model in 4-bit using bitsandbytes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>low_bit_mode</strong> (<em>int</em>):</dt><dd><p>0: no quantization config, 1: change compute, 2: nf4, 3: double quant, 4: 2 and 3.
+See: <a class="reference external" href="https://huggingface.co/docs/transformers/main_classes/quantization">Transformers Documentation</a>
+If using older bitsandbytes or transformers, 0 is required.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>load_half</strong> (<em>bool</em>):</dt><dd><p>Load model in float16 (None means auto, which means True unless t5 based model), otherwise specify bool.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_flash_attention_2</strong> (<em>bool</em>):</dt><dd><p>Whether to try to use flash attention 2 if available when loading HF models.
+Warning: We have seen nans and type mismatches with flash-attn==2.3.4 installed and this enabled, even for other models like embedding model that is unrelated to primary models.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>load_gptq</strong> (<em>str</em>):</dt><dd><p>To load model with GPTQ, put model_basename here, e.g. “model” for TheBloke models.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_autogptq</strong> (<em>bool</em>):</dt><dd><p>Whether to use AutoGPTQ (True) or HF Transformers (False). Some models are only supported by one or the other.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>load_awq</strong> (<em>str</em>):</dt><dd><p>Load model with AWQ, e.g. “model” for TheBloke models.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>load_exllama</strong> (<em>bool</em>):</dt><dd><p>Whether to use exllama (only applicable to LLaMa1/2 models with 16-bit or GPTQ).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_safetensors</strong> (<em>bool</em>):</dt><dd><p>To use safetensors version (assumes file/HF points to safe tensors version).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>revision</strong> (<em>str</em>):</dt><dd><p>Which HF revision to use.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_gpu_id</strong> (<em>bool</em>):</dt><dd><p>Whether to control devices with gpu_id. If False, then spread across GPUs.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>base_model</strong> (<em>str</em>):</dt><dd><p>Model HF-type name. If use –base_model to preload model, cannot unload in gradio in models tab.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tokenizer_base_model</strong> (<em>str</em>):</dt><dd><p>Tokenizer HF-type name. Usually not required, inferred from base_model. If model is private or doesn’t exist as HF model, can use « tiktoken » and pass max_seq_len and (if different) max_output_seq_len. For inference servers like OpenAI etc. if have model name, we use tiktoken with known input/output sequence lengths.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>lora_weights</strong> (<em>str</em>):</dt><dd><p>LORA weights path/HF link.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gpu_id</strong> (<em>int</em>):</dt><dd><p>If use_gpu_id, then use gpu_id for cuda device ID, or auto mode if gpu_id != -1.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>compile_model</strong> (<em>bool</em>):</dt><dd><p>Whether to compile the model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_cache</strong> (<em>bool</em>):</dt><dd><p>Whether to use caching in model (some models fail when multiple threads use).</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>inference_server</strong> (<em>str</em>):</dt><dd><p>Consume base_model as type of model at this address.</p>
+<p>Address can be text-generation-server hosting that base_model.
+For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">generate.py</span> <span class="pre">--inference_server=&quot;http://192.168.1.46:6112&quot;</span> <span class="pre">--base_model=HuggingFaceH4/zephyr-7b-beta</span></code></p></li>
+</ul>
+<p>For a gradio server, use the same address as the TGI server. We infer if it’s TGI or Gradio.
+For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">generate.py</span> <span class="pre">--inference_server=&quot;http://192.168.1.46:7860&quot;</span> <span class="pre">--base_model=HuggingFaceH4/zephyr-7b-beta</span></code></p></li>
+</ul>
+<p>For auth protected gradio, do:
+For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">generate.py</span> <span class="pre">--inference_server=&quot;http://192.168.1.46:7860:user:password&quot;</span> <span class="pre">--base_model=HuggingFaceH4/zephyr-7b-beta</span></code></p></li>
+</ul>
+<p>If you don’t want to specify the port, do:
+For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">generate.py</span> <span class="pre">--inference_server=&quot;https://gpt.h2o.ai:None:user:password&quot;</span> <span class="pre">--base_model=HuggingFaceH4/zephyr-7b-beta</span></code></p></li>
+</ul>
+<p>Address can also be « openai_chat » or « openai » for OpenAI API.</p>
+<p>Address can also be « openai_azure_chat » or « openai_azure » for Azure OpenAI API.
+For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">generate.py</span> <span class="pre">--inference_server=&quot;openai_chat&quot;</span> <span class="pre">--base_model=gpt-3.5-turbo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">generate.py</span> <span class="pre">--inference_server=&quot;openai&quot;</span> <span class="pre">--base_model=text-davinci-003</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">generate.py</span> <span class="pre">--inference_server=&quot;openai_azure_chat:&lt;deployment_name&gt;:&lt;baseurl&gt;:&lt;api_version&gt;:&lt;access</span> <span class="pre">key&gt;&quot;</span> <span class="pre">--base_model=gpt-3.5-turbo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">generate.py</span> <span class="pre">--inference_server=&quot;openai_azure:&lt;deployment_name&gt;:&lt;baseurl&gt;:&lt;api_version&gt;:&lt;access</span> <span class="pre">key&gt;&quot;</span> <span class="pre">--base_model=text-davinci-003</span></code></p></li>
+</ul>
+<p>Optionals (Replace with None or just leave empty but keep :):</p>
+<ul class="simple">
+<li><p><cite>&lt;deployment_name&gt;</cite>: Some deployment name</p></li>
+<li><p><cite>&lt;baseurl&gt;</cite>: For example, « &lt;endpoint&gt;.openai.azure.com » for some &lt;endpoint&gt; without <a class="reference external" href="https://">https://</a></p></li>
+<li><p><cite>&lt;api_version&gt;</cite>: Some API version, e.g., 2023-05-15</p></li>
+</ul>
+<p>Address can also be for vLLM:</p>
+<ul class="simple">
+<li><p>Use: « vllm:IP:port » for OpenAI-compliant vLLM endpoint</p></li>
+<li><p>Use: « vllm_chat:IP:port » for OpenAI-Chat-compliant vLLM endpoint</p></li>
+<li><p>Use: « vllm:http://IP:port/v1 » for OpenAI-compliant vLLM endpoint</p></li>
+<li><p>Use: « vllm_chat:<a class="reference external" href="http://IP:port/v1">http://IP:port/v1</a> » for OpenAI-Chat-compliant vLLM endpoint</p></li>
+<li><p>Use: « vllm:https://IP/v1 » for OpenAI-compliant vLLM endpoint</p></li>
+<li><p>Use: « vllm_chat:<a class="reference external" href="https://IP/v1">https://IP/v1</a> » for OpenAI-Chat-compliant vLLM endpoint</p></li>
+</ul>
+<p>For example, for non-standard URL and API key for vllm, one would do:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vllm_chat:https://vllm.h2o.ai:None:/1b1219f7-4bb4-43e9-881f-fa8fa9fe6e04/v1:1234ABCD</span></code></p></li>
+</ul>
+<p>where vllm.h2o.ai is the DNS name of the IP, None means no extra port, so will be dropped from base_url when using API, /1b1219f7-4bb4-43e9-881f-fa8fa9fe6e04/v1 is the url of the « page » to access, and 1234ABCD is the API key</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vllm_chat:https://vllm.h2o.ai:5001:/1b1219f7-4bb4-43e9-881f-fa8fa9fe6e04/v1:1234ABCD</span></code></p></li>
+</ul>
+<p>where vllm.h2o.ai is the DNS name of the IP, 5001 is the port, /1b1219f7-4bb4-43e9-881f-fa8fa9fe6e04/v1 is the url of the « page » to access, and 1234ABCD is the API key</p>
+<p>Or for groq, can use OpenAI API like:</p>
+<ul class="simple">
+<li><p>GROQ IS BROKEN FOR OPENAI API: <code class="docutils literal notranslate"><span class="pre">vllm:https://api.groq.com/openai:None:/v1:&lt;api</span> <span class="pre">key&gt;'</span></code></p></li>
+</ul>
+<p>with: other model_lock or CLI options: {“inference_server”: “vllm:https://api.groq.com/openai:None:/v1:&lt;api key&gt;”, “base_model”:”mixtral-8x7b-32768”, “visible_models”:”mixtral-8x7b-32768”, “max_seq_len”: 31744, “prompt_type”:”plain”}
+i.e.ensure to use “plain” prompt, not mixtral.</p>
+<p>For groq:</p>
+<ul class="simple">
+<li><p>groq and ensures set env GROQ_API_KEY or <code class="docutils literal notranslate"><span class="pre">groq:&lt;api</span> <span class="pre">key&gt;</span></code></p></li>
+</ul>
+<p>with: other model_lock or CLI options: {“inference_server”: “groq:&lt;api key&gt;”, “base_model”:”mixtral-8x7b-32768”, “visible_models”:”mixtral-8x7b-32768”, “max_seq_len”: 31744, “prompt_type”:”plain”}</p>
+<p>Or Address can be replicate:</p>
+<ul class="simple">
+<li><p>Use: <code class="docutils literal notranslate"><span class="pre">--inference_server=replicate:&lt;model</span> <span class="pre">name</span> <span class="pre">string&gt;</span></code> will use a Replicate server, requiring a Replicate key.</p></li>
+</ul>
+<p>e.g. &lt;model name string&gt; looks like « a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5 »</p>
+<p>Or Address can be for AWS SageMaker:</p>
+<ul class="simple">
+<li><p>Use: « sagemaker_chat:&lt;endpoint name&gt; » for chat models that AWS sets up as dialog</p></li>
+<li><p>Use: « sagemaker:&lt;endpoint name&gt; » for foundation models that AWS only text as inputs</p></li>
+</ul>
+<p>Or Address can be for Anthropic Claude.  Ensure key is set in env ANTHROPIC_API_KEY</p>
+<ul class="simple">
+<li><p>Use: « anthropic »</p></li>
+</ul>
+<p>E.g. <code class="docutils literal notranslate"><span class="pre">--base_model=claude-2.1</span> <span class="pre">--inference_server=anthropic</span></code></p>
+<p>Or Address can be for Google Gemini.  Ensure key is set in env GOOGLE_API_KEY</p>
+<ul class="simple">
+<li><p>Use: « google »</p></li>
+</ul>
+<p>E.g. <code class="docutils literal notranslate"><span class="pre">--base_model=gemini-pro</span> <span class="pre">--inference_server=google</span></code></p>
+<p>Or Address can be for MistralAI.  Ensure key is set in env MISTRAL_API_KEY</p>
+<ul class="simple">
+<li><p>Use: « mistralai »</p></li>
+</ul>
+<p>E.g. <code class="docutils literal notranslate"><span class="pre">--base_model=mistral-medium</span> <span class="pre">--inference_server=mistralai</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>regenerate_clients</strong> (<em>bool</em>):</dt><dd><p>Whether to regenerate client every LLM call or use start-up version.</p>
+<p>Benefit of doing each LLM call is timeout can be controlled to max_time in expert settings, else we use default of 600s.</p>
+<p>Maybe risky, some lack of thread safety: <a class="reference external" href="https://github.com/encode/httpx/discussions/3043">https://github.com/encode/httpx/discussions/3043</a>, so disabled
+Because gradio clients take a long time to start-up, we don’t ever regenerate them each time (including llava models).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>regenerate_gradio_clients</strong> (<em>bool</em>):</dt><dd><p>Whether to also regenerate gradio clients (slow).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>prompt_type</strong> (<em>str</em>):</dt><dd><p>Type of prompt, usually matched to fine-tuned model or plain for foundational model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>prompt_dict</strong> (<em>str</em>):</dt><dd><p>If prompt_type=custom, then expects (some) items returned by get_prompt(…, return_dict=True)</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>system_prompt</strong> (<em>str</em>):</dt><dd><p>Universal system prompt to use if model supports, like LLaMa2, regardless of prompt_type definition.</p>
+<p>Useful for langchain case to control behavior, or OpenAI and Replicate.</p>
+<p>If None, “None”, or “auto”, then for LLaMa or other models that internally have system_prompt, will use default for each model</p>
+<p>If “”, then no system prompt (no empty template given to model either, just no system part added at all)</p>
+<p>If some string not in [“None”, “auto”], then use that as system prompt</p>
+<p>Default is “”, no system_prompt, because often it hurts performance/accuracy</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>allow_chat_system_prompt</strong> (<em>bool</em>):</dt><dd><p>Whether to use conversation_history to pre-append system prompt.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>llamacpp_path</strong> (<em>str</em>):</dt><dd><p>Location to store downloaded gguf or load list of models from. Note HF models go into hf cache folder, and gpt4all models go into their own cache folder. Can override with ENV LLAMACPP_PATH.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>llamacpp_dict</strong> (<em>dict</em>):</dt><dd><ul class="simple">
+<li><p>n_gpu_layers: for llama.cpp based models, number of GPU layers to offload (default is all by using large value).</p></li>
+<li><p>use_mlock: when using <cite>llama.cpp</cite> based CPU models, for computers with low system RAM or slow CPUs, recommended False.</p></li>
+<li><p>n_batch: Can make smaller to 128 for slower low-memory CPU systems.</p></li>
+<li><p>n_gqa: Required to be 8 for LLaMa 70B.</p></li>
+<li><p>… etc. anything that could be passed to llama.cpp or GPT4All models. e.g. python generate.py –base_model=”llama” –prompt_type=llama2 –score_model=None –langchain_mode=”UserData” –user_path=user_path –llamacpp_dict= »{“n_gpu_layers”:25,”n_batch”:128} »</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>model_path_llama</strong> (<em>str</em>):</dt><dd><p>Model path or URL (for auto-download).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>model_name_gptj</strong> (<em>str</em>):</dt><dd><p>Model path or URL (for auto-download).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>model_name_gpt4all_llama</strong> (<em>str</em>):</dt><dd><p>Model path or URL (for auto-download).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>model_name_exllama_if_no_config</strong> (<em>str</em>):</dt><dd><p>exllama model’s full path for model, tokenizer, generator for use when no HuggingFace config.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>exllama_dict</strong> (<em>dict</em>):</dt><dd><p>for setting various things for Exllama class:
+- compress_pos_emb
+- set_auto_map
+- gpu_peer_fix
+- alpha_value
+- matmul_recons_thd
+- fused_mlp_thd
+- sdp_thd
+- fused_attn
+- matmul_fused_remap
+- rmsnorm_no_half2
+- rope_no_half2
+- matmul_no_half2
+- silu_no_half2
+- concurrent_streams</p>
+<p>E.g. to set memory to be split across 2 GPUs, use –exllama_dict= »{“set_auto_map”:20,20} »</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gptq_dict</strong> (<em>dict</em>):</dt><dd><p>Choices for AutoGPTQ.</p>
+<ul class="simple">
+<li><p><strong>inject_fused_attention</strong> (<em>bool</em>): Whether to inject fused attention.</p></li>
+<li><p><strong>disable_exllama</strong> (<em>bool</em>): Whether to disable ExLLAMA.</p></li>
+<li><p><strong>use_triton</strong> (<em>bool</em>): Whether to use Triton.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>attention_sinks</strong> (<em>bool</em>):</dt><dd><p>Whether to enable attention sinks.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>sink_dict</strong> (<em>dict</em>):</dt><dd><p>Dict of options for attention sinks.</p>
+<ul class="simple">
+<li><p><strong>window_length</strong> (<em>int</em>): Length of the window.</p></li>
+<li><p><strong>num_sink_tokens</strong> (<em>int</em>): Number of sink tokens.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hf_model_dict</strong> (<em>dict</em>):</dt><dd><p>Dict of options for HF models using transformers.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>truncation_generation</strong> (<em>bool</em>):</dt><dd><p>Whether (for torch) to terminate generation once reach context length of model. For some models, perplexity becomes critically large beyond context.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>model_lock</strong> (<em>list of dict</em>):</dt><dd><p>Lock models to specific combinations, for ease of use and extending to many models. Only used if gradio = True. List of dicts, each dict has base_model, tokenizer_base_model, lora_weights, inference_server, prompt_type, and prompt_dict. If all models have the same prompt_type and prompt_dict, you can still specify that once in the CLI outside model_lock as the default for the dict. You can specify model_lock instead of those items on the CLI. As with the CLI itself, base_model can infer prompt_type and prompt_dict if in prompter.py. Also, tokenizer_base_model and lora_weights are optional. Also, inference_server is optional if loading the model from the local system. All models provided will automatically appear in compare model mode. Model loading-unloading and related choices will be disabled. Model/lora/server adding will be disabled.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>model_lock_columns</strong> (<em>int</em>):</dt><dd><p>How many columns to show if locking models (and so showing all at once). If None, then defaults to up to 3. if -1, then all goes into 1 row. Maximum value is 4 due to non-dynamic gradio rendering elements.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>model_lock_layout_based_upon_initial_visible</strong> (<em>bool</em>):</dt><dd><p>Whether to base any layout upon visible models (True) or upon all possible models. Gradio does not allow dynamic objects, so all layouts are preset, and these are two reasonable options. False is best when there are many models and user excludes middle ones as being visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>fail_if_cannot_connect</strong> (<em>bool</em>):</dt><dd><p>If doing model locking (e.g. with many models), fail if True. Otherwise, ignore. Useful when many endpoints and want to just see what works, but still have to wait for timeout.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>temperature</strong> (<em>float</em>):</dt><dd><p>Generation temperature.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>top_p</strong> (<em>float</em>):</dt><dd><p>Generation top_p.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>top_k</strong> (<em>int</em>):</dt><dd><p>Generation top_k.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>penalty_alpha</strong> (<em>float</em>):</dt><dd><p>Penalty_alpha&gt;0 and top_k&gt;1 enables contrastive search (not all models support).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>num_beams</strong> (<em>int</em>):</dt><dd><p>Generation number of beams.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>repetition_penalty</strong> (<em>float</em>):</dt><dd><p>Generation repetition penalty.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>num_return_sequences</strong> (<em>int</em>):</dt><dd><p>Generation number of sequences (1 forced for chat).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>do_sample</strong> (<em>bool</em>):</dt><dd><p>Generation sample. Enable for sampling for given temperature, top_p, top_k, else greedy decoding and then temperature, top_p, top_k not used. [More Info](<a class="reference external" href="https://huggingface.co/docs/transformers/main_classes/text_generation#transformers.GenerationConfig.do_sample">https://huggingface.co/docs/transformers/main_classes/text_generation#transformers.GenerationConfig.do_sample</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>seed</strong> (<em>int</em>):</dt><dd><p>Seed (0 means random seed, &gt;0 uses that seed for sampling so reproducible even for sampling). None becomes 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_new_tokens</strong> (<em>int</em>):</dt><dd><p>Generation max new tokens.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>min_new_tokens</strong> (<em>int</em>):</dt><dd><p>Generation min tokens.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>early_stopping</strong> (<em>bool</em>):</dt><dd><p>Generation early stopping.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_time</strong> (<em>float</em>):</dt><dd><p>Maximum time to allow for generation.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>memory_restriction_level</strong> (<em>int</em>):</dt><dd><p>0 = no restriction to tokens or model, 1 = some restrictions on token 2 = HF like restriction 3 = very low memory case.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>debug</strong> (<em>bool</em>):</dt><dd><p>Enable debug mode.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>save_dir</strong> (<em>str</em>):</dt><dd><p>Directory chat data is saved to.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>local_files_only</strong> (<em>bool</em>):</dt><dd><p>Whether to only use local files instead of doing to HF for models.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>resume_download</strong> (<em>bool</em>):</dt><dd><p>Whether to resume downloads from HF for models.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_auth_token</strong> (<em>bool</em>):</dt><dd><p>Whether to use HF auth token (requires CLI did huggingface-cli login before).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>trust_remote_code</strong> (<em>bool</em>):</dt><dd><p>Whether to trust any code needed for HF model.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>rope_scaling</strong> (<em>str</em>):</dt><dd><p>For HF transformers model: scaling for rope-based models. For long context models that have been tuned for a specific size, you have to only use that specific size by setting the <cite>–rope_scaling</cite> exactly correctly.</p>
+<dl class="simple">
+<dt>Example usage:</dt><dd><ul class="simple">
+<li><p><cite>–rope_scaling= »{“type”:”dynamic”, “factor”:4} »</cite></p></li>
+<li><p><cite>–rope_scaling= »{“type”:”linear”, “factor”:4} »</cite></p></li>
+<li><p><cite>python generate.py –rope_scaling= »{“type”:”linear”,”factor”:4} » –base_model=lmsys/vicuna-13b-v1.5-16k –hf_embedding_model=sentence-transformers/all-MiniLM-L6-v2 –load_8bit=True –langchain_mode=UserData –user_path=user_path –prompt_type=vicuna11 –h2ocolors=False</cite></p></li>
+</ul>
+</dd>
+</dl>
+<p>For exllama model: <cite>–rope_scaling= »{“alpha_value”:4} »</cite>. This automatically scales max_seq_len for exllama.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_seq_len</strong> (<em>int</em>):</dt><dd><p>Manually set maximum sequence length for the LLM.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_output_seq_len</strong> (<em>int</em>):</dt><dd><p>Manually set maximum output length for the LLM.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>offload_folder</strong> (<em>str</em>):</dt><dd><p>Path for spilling model onto disk.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>src_lang</strong> (<em>str or None</em>):</dt><dd><p>Source languages to include if doing translation (None = all).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tgt_lang</strong> (<em>str or None</em>):</dt><dd><p>Target languages to include if doing translation (None = all).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>prepare_offline_level</strong> (<em>int</em>):</dt><dd><p>Whether to just prepare for offline use, do not go into CLI, eval, or Gradio run modes.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: No preparation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: Prepare just h2oGPT with the exact same setup as passed to CLI and ensure all artifacts for h2oGPT alone added to ~/.cache/.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code>: Prepare h2oGPT + all inference servers so h2oGPT + inference servers can use the ~/.cache/.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>cli</strong> (<em>bool</em>):</dt><dd><p>Whether to use CLI (non-Gradio) interface.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>cli_loop</strong> (<em>bool</em>):</dt><dd><p>Whether to loop for CLI (False usually only for testing).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio</strong> (<em>bool</em>):</dt><dd><p>Whether to enable Gradio, or to enable benchmark mode.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>openai_server</strong> (<em>bool</em>):</dt><dd><p>Whether to launch OpenAI proxy server for local Gradio server. Disabled if API is disabled or –auth=closed.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>openai_port</strong> (<em>int</em>):</dt><dd><p>Port for OpenAI proxy server.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio_offline_level</strong> (<em>int</em>):</dt><dd><p>If greater than 0, then change fonts so full offline.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">==</span> <span class="pre">1</span></code>: Means backend won’t need internet for fonts, but front-end UI might if font not cached.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">==</span> <span class="pre">2</span></code>: Means backend and frontend don’t need internet to download any fonts. Note: Some things always disabled include HF telemetry, Gradio telemetry, ChromaDB posthog that involve uploading. This option further disables Google Fonts for downloading, which is less intrusive than uploading, but still required in air-gapped case. The fonts don’t look as nice as Google Fonts, but ensure full offline behavior. Also set <code class="docutils literal notranslate"><span class="pre">--share=False</span></code> to avoid sharing a Gradio live link.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>server_name</strong> (<em>str</em>):</dt><dd><p>IP to use. In Linux, 0.0.0.0 is a good choice so exposed to outside host, else for only local use 127.0.0.1. For Windows/MAC, 0.0.0.0 or 127.0.0.1 will work, but may need to specify the actual LAN IP address for other LAN clients to see.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>share</strong> (<em>bool</em>):</dt><dd><p>Whether to share the Gradio app with a sharable URL.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>open_browser</strong> (<em>bool</em>):</dt><dd><p>Whether to automatically open a browser tab with Gradio UI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>close_button</strong> (<em>bool</em>):</dt><dd><p>Whether to show close button in system tab (if not public).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>shutdown_via_api</strong> (<em>bool</em>):</dt><dd><p>Whether to allow shutdown via API.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>root_path</strong> (<em>str</em>):</dt><dd><p>The root path (or « mount point ») of the application, if it’s not served from the root (« / ») of the domain. Often used when the application is behind a reverse proxy that forwards requests to the application. For example, if the application is served at « <a class="reference external" href="https://example.com/myapp">https://example.com/myapp</a> », the <cite>root_path</cite> should be set to « /myapp ».</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>ssl_verify</strong> (<em>str</em>):</dt><dd><p>Passed to Gradio launch.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>ssl_keyfile</strong> (<em>str</em>):</dt><dd><p>Passed to Gradio launch.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>ssl_certfile</strong> (<em>str</em>):</dt><dd><p>Passed to Gradio launch.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>ssl_keyfile_password</strong> (<em>str</em>):</dt><dd><p>Passed to Gradio launch.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chat</strong> (<em>bool</em>):</dt><dd><p>Whether to enable chat mode with chat history.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chat_conversation</strong> (<em>list of tuples</em>):</dt><dd><p>List of tuples of (human, bot) conversation pre-appended to existing chat when using instruct/chat models. Requires also <cite>add_chat_history_to_context = True</cite>. It does <em>not</em> require <cite>chat=True</cite>, so works with nochat_api etc.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>text_context_list</strong> (<em>list of str</em>):</dt><dd><p>List of strings to add to context for non-database version of document Q/A for faster handling via API etc. Forces LangChain code path and uses as many entries in list as possible given <cite>max_seq_len</cite>, with first assumed to be most relevant and to go near prompt.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>stream_output</strong> (<em>bool</em>):</dt><dd><p>Whether to stream output.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>async_output</strong> (<em>bool</em>):</dt><dd><p>Whether to do asyncio handling.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>num_async</strong> (<em>int</em>):</dt><dd><p>Number of simultaneously allowed asyncio calls to make for async_output. Too many will overload the inference server, too few will be too slow.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>show_examples</strong> (<em>bool</em>):</dt><dd><p>Whether to show clickable examples in Gradio.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>verbose</strong> (<em>bool</em>):</dt><dd><p>Whether to show verbose prints.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>h2ocolors</strong> (<em>bool</em>):</dt><dd><p>Whether to use H2O.ai theme.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>dark</strong> (<em>bool</em>):</dt><dd><p>Whether to use dark mode for UI by default (still controlled in UI).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>height</strong> (<em>int</em>):</dt><dd><p>Height of chat window.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>render_markdown</strong> (<em>bool</em>):</dt><dd><p>Whether to render markdown in chatbot UI. In some cases this distorts the rendering. [More Info](<a class="reference external" href="https://github.com/gradio-app/gradio/issues/4344#issuecomment-1771963021">https://github.com/gradio-app/gradio/issues/4344#issuecomment-1771963021</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>show_lora</strong> (<em>bool</em>):</dt><dd><p>Whether to show LORA options in UI (expert so can be hard to understand).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>show_llama</strong> (<em>bool</em>):</dt><dd><p>Whether to show LLaMa.cpp/GPT4All options in UI (only likely useful if have weak GPUs).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>show_gpt4all</strong> (<em>bool</em>):</dt><dd><p>Whether to show GPT4All models in UI (not often useful, llama.cpp models best).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>login_mode_if_model0</strong> (<em>bool</em>):</dt><dd><p>Set to True to load –base_model after client logs in, to be able to free GPU memory when model is swapped.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>block_gradio_exit</strong> (<em>bool</em>):</dt><dd><p>Whether to block Gradio exit (used for testing).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>concurrency_count</strong> (<em>int</em>):</dt><dd><p>Gradio concurrency count (1 is optimal for local LLMs to avoid sharing cache that messes up models, else 64 is used if hosting remote inference servers only).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>api_open</strong> (<em>bool</em>):</dt><dd><p>If False, don’t let API calls skip Gradio queue.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>allow_api</strong> (<em>bool</em>):</dt><dd><p>Whether to allow API calls at all to Gradio server.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>input_lines</strong> (<em>int</em>):</dt><dd><p>How many input lines to show for chat box (&gt;1 forces shift-enter for submit, else enter is submit).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio_size</strong> (<em>str</em>):</dt><dd><p>Overall size of text and spaces: « xsmall », « small », « medium », « large ». Small useful for many chatbots in model_lock mode.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>show_copy_button</strong> (<em>bool</em>):</dt><dd><p>Whether to show copy button for chatbots.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>large_file_count_mode</strong> (<em>bool</em>):</dt><dd><p>Whether to force manual update to UI of drop-downs, good idea if millions of chunks or documents.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio_ui_stream_chunk_size</strong> (<em>int or None</em>):</dt><dd><p>Number of characters to wait before pushing text to UI. None is default, which is 0 when not doing model lock. Else 20 by default. 20 is a reasonable value for fast models and fast systems when handling several models at once. Choose 0 to disable (this disables use of <cite>gradio_ui_stream_chunk_min_seconds</cite> and <cite>gradio_ui_stream_chunk_seconds</cite> too). Workaround for these bugs that lead to UI being overwhelmed under various cases: [Issue 5914](<a class="reference external" href="https://github.com/gradio-app/gradio/issues/5914">https://github.com/gradio-app/gradio/issues/5914</a>) and [Issue 6609](<a class="reference external" href="https://github.com/gradio-app/gradio/issues/6609">https://github.com/gradio-app/gradio/issues/6609</a>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio_ui_stream_chunk_min_seconds</strong> (<em>float</em>):</dt><dd><p>Number of seconds before allowing yield to avoid spamming yields at a rate the user would not care about, regardless of chunk_size.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio_ui_stream_chunk_seconds</strong> (<em>float</em>):</dt><dd><p>Number of seconds to yield regardless of reaching <cite>gradio_ui_stream_chunk_size</cite> as long as something to yield. Helps case when streaming is slow and want to see progress at least every couple seconds.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio_api_use_same_stream_limits</strong> (<em>bool</em>):</dt><dd><p>Whether to use the same streaming limits as UI for API.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio_upload_to_chatbot</strong> (<em>bool</em>):</dt><dd><p>Whether to show upload in chatbots.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio_upload_to_chatbot_num_max</strong> (<em>int</em>):</dt><dd><p>Max number of things to add to chatbot.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>gradio_errors_to_chatbot</strong> (<em>bool</em>):</dt><dd><p>Whether to show errors in Accordion in chatbot or just in exceptions in each tab.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>pre_load_embedding_model</strong> (<em>bool</em>):</dt><dd><p>Whether to preload embedding model for shared use across DBs and users (multi-thread safe only).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>embedding_gpu_id</strong> (<em>str</em>):</dt><dd><p>Which GPU to place embedding model on. Only used if preloading embedding model. If “auto”, then use first device as is default. If “cpu” or some other string like “mps”, then use that as device name.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>auth</strong> (<em>list</em>):</dt><dd><p>Gradio auth for launcher in the form [(user1, pass1), (user2, pass2), …]. Examples:
+- <cite>–auth=[(“jon”,”password”)]</cite> with no spaces
+- <cite>–auth= »[(“jon”, “password)())(“)] »</cite> so any special characters can be used
+- <cite>–auth=auth.json</cite> to specify persisted state file with name auth.json (auth_filename then not required)
+- <cite>–auth=””</cite> will use default auth.json as file name for persisted state file (auth_filename good idea to control location)
+- <cite>–auth=None</cite> will use no auth, but still keep track of auth state, just not from logins</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>auth_filename</strong> (<em>str</em>):</dt><dd><p>Set auth filename, used only if –auth= was passed list of user/passwords.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>auth_access</strong> (<em>str</em>):</dt><dd><p>“open”: Allow new users to be added. “closed”: Stick to existing users.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>auth_freeze</strong> (<em>bool</em>):</dt><dd><p>Whether to freeze authentication based upon the current file, no longer update file.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>auth_message</strong> (<em>str</em>):</dt><dd><p>Message to show if having users login, fixed if passed, else dynamic internally.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>google_auth</strong> (<em>bool</em>):</dt><dd><p>Whether to use Google auth.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>guest_name</strong> (<em>str</em>):</dt><dd><p>Guest name if using auth and have open access. If “”, then no guest allowed even if open access, then all databases for each user always persisted.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enforce_h2ogpt_api_key</strong> (<em>bool</em>):</dt><dd><p>Whether to enforce h2oGPT token usage for API.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enforce_h2ogpt_ui_key</strong> (<em>bool</em>):</dt><dd><p>Whether to enforce h2oGPT token usage for UI (same keys as API assumed).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>h2ogpt_api_keys</strong> (<em>list or str</em>):</dt><dd><p>List of tokens allowed for API access or file accessed on demand for JSON of list of keys.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>h2ogpt_key</strong> (<em>str</em>):</dt><dd><p>E.g. can be set when accessing Gradio h2oGPT server from local Gradio h2oGPT server that acts as a client to that inference server. Only applied for API at runtime when API accesses using Gradio inference_server are made.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>extra_allowed_paths</strong> (<em>list</em>):</dt><dd><p>List of strings for extra allowed paths users could access for file viewing/downloading. “.” can be used but be careful what that exposes. Note by default all paths in <cite>langchain_mode_paths</cite> given at startup are allowed.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>blocked_paths</strong> (<em>list</em>):</dt><dd><p>Any blocked paths to add for Gradio access for file viewing/downloading.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_max_time</strong> (<em>float</em>):</dt><dd><p>Maximum max_time for Gradio slider.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_max_new_tokens</strong> (<em>int</em>):</dt><dd><p>Maximum max_new_tokens for Gradio slider.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>min_max_new_tokens</strong> (<em>int</em>):</dt><dd><p>Minimum of max_new_tokens, when auto-scaling down to handle more docs/prompt, but still let generation have some tokens.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_input_tokens</strong> (<em>int</em>):</dt><dd><p>Max input tokens to place into model context for each LLM call. -1 means auto, fully fill context for query, and fill by original document chunk for summarization. &gt;=0 means use that to limit context filling to that many tokens.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_total_input_tokens</strong> (<em>int</em>):</dt><dd><p>Like max_input_tokens but instead of per LLM call, applies across all LLM calls for single summarization/extraction action.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>docs_token_handling</strong> (<em>str</em>):</dt><dd><ul class="simple">
+<li><p><cite>“chunk”</cite> means fill context with top_k_docs (limited by max_input_tokens or model_max_len) chunks for query or top_k_docs original document chunks summarization.</p></li>
+<li><p><cite>None</cite> or <cite>“split_or_merge”</cite> means same as “chunk” for query, while for summarization merges documents to fill up to max_input_tokens or model_max_len tokens.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>docs_joiner</strong> (<em>str or None</em>):</dt><dd><p>String to join lists of text when doing split_or_merge. <cite>None</cite> means “nn”.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hyde_level</strong> (<em>int</em>):</dt><dd><p>HYDE level for HYDE approach (<a class="reference external" href="https://arxiv.org/abs/2212.10496">https://arxiv.org/abs/2212.10496</a>).
+- <cite>0</cite>: No HYDE.
+- <cite>1</cite>: Use non-document-based LLM response and original query for embedding query.
+- <cite>2</cite>: Use document-based LLM response and original query for embedding query.
+- <cite>3+</cite>: Continue iterations of embedding prior answer and getting new response.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hyde_template</strong> (<em>str or None</em>):</dt><dd><ul class="simple">
+<li><p><cite>None</cite>, <cite>“None”</cite>, <cite>“auto”</cite> uses internal value and enable.</p></li>
+<li><p><cite>“ {query} “</cite> is minimal template one can pass.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hyde_show_only_final</strong> (<em>bool</em>):</dt><dd><p>Whether to show only the last result of HYDE, not intermediate steps.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hyde_show_intermediate_in_accordion</strong> (<em>bool</em>):</dt><dd><p>Whether to show intermediate HYDE, but inside HTML accordion.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_models</strong> (<em>list or None</em>):</dt><dd><p>Which models in model_lock list to show by default. Takes integers of position in model_lock (model_states) list or strings of base_model names. Ignored if model_lock not used. For nochat API, this is single item within a list for model by name or by index in model_lock. If None, then just use the first model in model_lock list. If model_lock not set, use the model selected by CLI –base_model etc. Note that unlike h2ogpt_key, this visible_models only applies to this running h2oGPT server, and the value is not used to access the inference server. If need a visible_models for an inference server, then use –model_lock and group together.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_visible_models</strong> (<em>int</em>):</dt><dd><p>Maximum visible models to allow to select in UI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_ask_anything_high</strong> (<em>bool</em>):</dt><dd><p>Whether the ask anything block goes near the top or near the bottom of the UI Chat.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_visible_models</strong> (<em>bool</em>):</dt><dd><p>Whether the visible models drop-down is visible in the UI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_submit_buttons</strong> (<em>bool</em>):</dt><dd><p>Whether submit buttons are visible when the UI first comes up.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_side_bar</strong> (<em>bool</em>):</dt><dd><p>Whether the left sidebar is visible when the UI first comes up.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_doc_track</strong> (<em>bool</em>):</dt><dd><p>Whether the left sidebar’s document tracking is visible when the UI first comes up.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_chat_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the chat tab is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_doc_selection_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the document selection tab is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_doc_view_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the document view tab is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_chat_history_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the chat history tab is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_expert_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the expert tab is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_models_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the models tab is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_system_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the system tab is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_tos_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the ToS tab is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_login_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the Login tab is visible (needed for persistence or to enter key for UI access to models and ingestion).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_hosts_tab</strong> (<em>bool</em>):</dt><dd><p>Whether the hosts tab is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chat_tables</strong> (<em>bool</em>):</dt><dd><p>Just show Chat as a block without a tab (useful if you want only chat view).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_h2ogpt_links</strong> (<em>bool</em>):</dt><dd><p>Whether GitHub stars, URL are visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_h2ogpt_qrcode</strong> (<em>bool</em>):</dt><dd><p>Whether QR code is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_h2ogpt_logo</strong> (<em>bool</em>):</dt><dd><p>Whether the central logo is visible.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_chatbot_label</strong> (<em>bool</em>):</dt><dd><p>Whether to show label in chatbot (e.g., if only one model for own purpose, then can set to False).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_all_prompter_models</strong> (<em>bool</em>):</dt><dd><p>Whether to show all prompt_type_to_model_name items or just curated ones.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_curated_models</strong> (<em>bool</em>):</dt><dd><p>Whether to show curated models (useful to see few good options).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>actions_in_sidebar</strong> (<em>bool</em>):</dt><dd><p>Whether to show sidebar with actions in old style.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_choice_in_sidebar</strong> (<em>bool</em>):</dt><dd><p>Whether to show document choices in the sidebar. Useful if often changing picking specific document(s).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_add_models_to_list_ui</strong> (<em>bool</em>):</dt><dd><p>Whether to show add model, lora, server to dropdown list. Disabled by default since it clutters Models tab in UI, and can just add a custom item directly in the dropdown.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_raw_chunks</strong> (<em>int</em>):</dt><dd><p>Maximum number of chunks to show in UI when asking for raw DB text from documents/collection.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>pdf_height</strong> (<em>str</em>):</dt><dd><p>Height of PDF viewer in UI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>avatars</strong> (<em>bool</em>):</dt><dd><p>Whether to show avatars in chatbot.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>add_disk_models_to_ui</strong> (<em>bool</em>):</dt><dd><p>Whether to add HF cache models and llama.cpp models to UI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>page_title</strong> (<em>str</em>):</dt><dd><p>Title of the web page. Default is « h2oGPT ».</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>favicon_path</strong> (<em>str</em>):</dt><dd><p>Path to favicon. Default is « h2oGPT » favicon.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_ratings</strong> (<em>bool</em>):</dt><dd><p>Whether full review is visible, else just likable chatbots.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>reviews_file</strong> (<em>str</em>):</dt><dd><p>File to store reviews. Set to <cite>reviews.csv</cite> if <cite>visible_ratings=True</cite> if this isn’t set.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>sanitize_user_prompt</strong> (<em>bool</em>):</dt><dd><p>Whether to remove profanity from user input (slows down input processing). Requires optional packages: <cite>alt-profanity-check==1.2.2</cite> and <cite>better-profanity==0.7.0</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>sanitize_bot_response</strong> (<em>bool</em>):</dt><dd><p>Whether to remove profanity and repeat lines from bot output (about 2x slower generation for long streaming cases due to <cite>better_profanity</cite> being slow).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>extra_model_options</strong> (<em>str</em>):</dt><dd><p>Extra models to show in the list in Gradio.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>extra_lora_options</strong> (<em>str</em>):</dt><dd><p>Extra LORA to show in the list in Gradio.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>extra_server_options</strong> (<em>str</em>):</dt><dd><p>Extra servers to show in the list in Gradio.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>score_model</strong> (<em>str</em>):</dt><dd><p>Which model to score responses. Options are:
+- <cite>None</cite>: No response scoring.
+- <cite>“auto”</cite>: Auto mode. Use “” (no model) for CPU or 1 GPU, “OpenAssistant/reward-model-deberta-v3-large-v2” for &gt;=2 GPUs, because on CPU takes too much compute just for scoring response.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>verifier_model</strong> (<em>str</em>):</dt><dd><p>Model for verifier.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>verifier_tokenizer_base_model</strong> (<em>str</em>):</dt><dd><p>Tokenizer server for verifier. If empty/None, infer from the model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>verifier_inference_server</strong> (<em>str</em>):</dt><dd><p>Inference server for verifier.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>eval_filename</strong> (<em>str</em>):</dt><dd><p>JSON file to use for evaluation. If <cite>None</cite>, it is <cite>sharegpt</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>eval_prompts_only_num</strong> (<em>int</em>):</dt><dd><p>For no Gradio benchmark, if using <cite>eval_filename</cite> prompts for eval instead of examples.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>eval_prompts_only_seed</strong> (<em>int</em>):</dt><dd><p>For no Gradio benchmark, seed for <cite>eval_filename</cite> sampling.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>eval_as_output</strong> (<em>bool</em>):</dt><dd><p>For no Gradio benchmark, whether to test <cite>eval_filename</cite> output itself.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_mode</strong> (<em>str</em>):</dt><dd><p>Data source to include. Choose « UserData » to only consume files from <cite>make_db.py</cite>.
+If not passed, then chosen to be first <cite>langchain_modes</cite>, else <cite>langchain_mode-&gt;Disabled</cite> is set if no <cite>langchain_modes</cite> either.
+WARNING: <cite>wiki_full</cite> requires extra data processing via <cite>read_wiki_full.py</cite> and requires really good workstation to generate db, unless already present.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>user_path</strong> (<em>str</em>):</dt><dd><p>User path to glob from to generate db for vector search, for “UserData” langchain mode.
+If already have db, any new/changed files are added automatically if path set, does not have to be the same path used for prior db sources.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_modes</strong> (<em>list</em>):</dt><dd><p>DBs to generate at launch to be ready for LLM.
+Apart from additional user-defined collections, can include [“wiki”, “wiki_full”, “UserData”, “MyData”, “github h2oGPT”, “DriverlessAI docs”].
+But <cite>wiki_full</cite> is expensive and requires preparation.
+To allow personal space only live in session, add “MyData” to list.
+Default: If only want to consume local files, e.g. prepared by <cite>make_db.py</cite>, only include [“UserData”].
+If have own user modes, need to add these here or add in UI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_mode_paths</strong> (<em>dict</em>):</dt><dd><p>Dict of <cite>langchain_mode</cite> keys and disk path values to use for source of documents.
+E.g. « {“UserData2”: “userpath2”} ».
+A disk path can be None, e.g. –langchain_mode_paths= »{“UserData2”: None} » even if existing DB, to avoid new documents being added from that path, source links that are on disk still work.
+If <cite>–user_path</cite> was passed, that path is used for “UserData” instead of the value in this dict.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_mode_types</strong> (<em>dict</em>):</dt><dd><p>Dict of <cite>langchain_mode</cite> keys and database types.
+E.g. python generate.py –base_model=llama –langchain_modes=[“TestData”] –langchain_mode_types= »{“TestData”:”shared”} ».
+The type is attempted to be inferred if the directory already exists, then don’t have to pass this.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>detect_user_path_changes_every_query</strong> (<em>bool</em>):</dt><dd><p>Whether to detect if any files changed or added every similarity search (by file hashes).
+Expensive for a large number of files, so not done by default. By default, only detect changes during db loading.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>langchain_action</strong> (<em>str</em>):</dt><dd><p>Mode langchain operations on documents.
+Options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Query: Make query of document(s)</p></li>
+<li><p>Summarize or Summarize_map_reduce: Summarize document(s) via map_reduce</p></li>
+<li><p>Summarize_all: Summarize document(s) using entire document at once</p></li>
+<li><p>Summarize_refine: Summarize document(s) using entire document, and try to refine before returning summary</p></li>
+<li><p>Extract: Extract information from document(s) via map (no reduce)</p></li>
+</ul>
+</div></blockquote>
+<p>Currently enabled are Query, Summarize, and Extract.
+Summarize is a « map reduce » and extraction is « map ». That is, map returns a text output (roughly) per input item, while reduce reduces all maps down to single text output.
+The « roughly » refers to the fact that if one has docs_token_handling=”split_or_merge”, then we split or merge chunks, so you will get a map for some optimal-sized chunks given the model size. If you choose docs_token_handling=”chunk”, then you get back a map for each chunk you give, but you should ensure the model token limit is not exceeded yourself.
+Summarize is useful when wanting to reduce down to single text, while Extract is useful when you want to operate the prompt on blocks of data and get back a result per block.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_agents</strong> (<em>list</em>):</dt><dd><p>Which agents to use.
+Options: “search” (Use Web Search as context for LLM response, e.g. SERP if have <cite>SERPAPI_API_KEY</cite> in env)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>force_langchain_evaluate</strong> (<em>bool</em>):</dt><dd><p>Whether to force langchain LLM use even if not doing langchain, mostly for testing.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_langchain_actions</strong> (<em>bool</em>):</dt><dd><p>Which actions to allow.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_langchain_agents</strong> (<em>bool</em>):</dt><dd><p>Which agents to allow.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_subset</strong> (<em>str</em>):</dt><dd><p>Default document choice when taking a subset of the collection.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_choice</strong> (<em>str</em>):</dt><dd><p>Chosen document(s) by internal name. “All” means use all docs.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_source_substrings</strong> (<em>list</em>):</dt><dd><p>Substrings in the list to search in source names in metadata for chroma dbs.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_source_substrings_op</strong> (<em>str</em>):</dt><dd><p>“and” or “or” for source search words.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_content_substrings</strong> (<em>list</em>):</dt><dd><p>Substrings in the list to search in content for chroma dbs.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_content_substrings_op</strong> (<em>str</em>):</dt><dd><p>“and” or “or” for content search words.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_llm_if_no_docs</strong> (<em>bool</em>):</dt><dd><p>Whether to use LLM even if no documents, when <cite>langchain_mode=UserData</cite> or <cite>MyData</cite> or custom.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>load_db_if_exists</strong> (<em>bool</em>):</dt><dd><p>Whether to load chroma db if exists or re-generate db.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>keep_sources_in_context</strong> (<em>bool</em>):</dt><dd><p>Whether to keep URL sources in context, not helpful usually.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>db_type</strong> (<em>str</em>):</dt><dd><p>Type of database to use.
+Options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“faiss”: in-memory database</p></li>
+<li><p>“chroma”: for chroma &gt;= 0.4</p></li>
+<li><p>“chroma_old”: for chroma &lt; 0.4 (recommended for large collections)</p></li>
+<li><p>“weaviate”: for persisted on disk</p></li>
+<li><p>“qdrant”: for a Qdrant server or an in-memory instance</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_openai_embedding</strong> (<em>bool</em>):</dt><dd><p>Whether to use OpenAI embeddings for the vector database.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_openai_model</strong> (<em>bool</em>):</dt><dd><p>Whether to use OpenAI model for use with the vector database.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hf_embedding_model</strong> (<em>str</em>):</dt><dd><p>Which HF embedding model to use for the vector database.
+Default is instructor-large with 768 parameters per embedding if have GPUs, else all-MiniLM-L6-v2 if no GPUs.
+Can also choose simpler model with 384 parameters per embedding: « sentence-transformers/all-MiniLM-L6-v2 ».
+Can also choose even better embedding with 1024 parameters: “hkunlp/instructor-xl”.
+We support automatically changing embeddings for chroma, with a backup of db made if this is done.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>migrate_embedding_model</strong> (<em>bool</em>):</dt><dd><p>Whether to use <cite>hf_embedding_model</cite> embedding even if the database already had an embedding set.
+Used to migrate all embeddings to a new one, but will take time to re-embed.
+Default (<cite>False</cite>) is to use the prior embedding for existing databases, and only use <cite>hf_embedding_model</cite> for new databases.
+If had an old database without an embedding saved, then <cite>hf_embedding_model</cite> is also used.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>auto_migrate_db</strong> (<em>bool</em>):</dt><dd><p>Whether to automatically migrate any chroma&lt;0.4 database from duckdb -&gt; sqlite version.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>cut_distance</strong> (<em>float</em>):</dt><dd><p>Distance to cut off references with larger distances when showing references.
+<cite>1.64</cite> is good to avoid dropping references for all-MiniLM-L6-v2, but <cite>instructor-large</cite> will always show excessive references.
+For <cite>all-MiniLM-L6-v2</cite>, a value of <cite>1.5</cite> can push out even more references, or a large value of <cite>100</cite> can avoid any loss of references.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>answer_with_sources</strong> (<em>bool</em>):</dt><dd><p>Whether to determine (and return) sources.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>append_sources_to_answer</strong> (<em>bool</em>):</dt><dd><p>Whether to place source information in the chat response (ignored by LLM). Always disabled for API.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>append_sources_to_chat</strong> (<em>bool</em>):</dt><dd><p>Whether to place sources information in the chat response but in a separate chat turn (ignored by LLM). Always disabled for API.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>show_accordions</strong> (<em>bool</em>):</dt><dd><p>Whether to show accordion for document references in the chatbot UI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>top_k_docs_max_show</strong> (<em>int</em>):</dt><dd><p>Maximum number of documents to show in the UI for sources.
+If web search is enabled, then this is modified to be max(top_k_docs_max_show, number of links used in search).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>show_link_in_sources</strong> (<em>bool</em>):</dt><dd><p>Whether to show URL link to the source document in references.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_instruct_mode</strong> (<em>bool</em>):</dt><dd><p>Whether to have langchain operate in instruct mode (<cite>True</cite>) or few-shot mode (<cite>False</cite>).
+Normally this might be decidable from <cite>–prompt_type=plain</cite>, but in some cases (like vllm_chat) we want the inference server to handle all prompting, so need to tell h2oGPT to use plain prompting, but don’t want to change langchain behavior.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>pre_prompt_query</strong> (<em>str</em>):</dt><dd><p>Prompt before documents to query. If <cite>None</cite>, then use internal defaults.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>prompt_query</strong> (<em>str</em>):</dt><dd><p>Prompt after documents to query. If <cite>None</cite>, then use internal defaults.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>pre_prompt_summary</strong> (<em>str</em>):</dt><dd><p>Prompt before documents to summarize/extract from. If <cite>None</cite>, then use internal defaults.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>prompt_summary</strong> (<em>str</em>):</dt><dd><p>Prompt after documents to summarize/extract from. If <cite>None</cite>, then use internal defaults.
+For summarize/extract, it is normal to have an empty query (nothing added in « ask anything » in the UI or empty string in the API).
+If a query is passed, the template is « Focusing on %s, %s » % (query, prompt_summary).
+If both query and input are passed, the template is « Focusing on %s, %s, %s » % (query, input, prompt_summary).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hyde_llm_prompt</strong> (<em>str</em>):</dt><dd><p>Hyde prompt for the first step when using LLM.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>doc_json_mode</strong> (<em>bool</em>):</dt><dd><p>Use system prompting approach with JSON input and output, e.g., for codellama or GPT-4.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>metadata_in_context</strong> (<em>str</em>):</dt><dd><p>Keys of metadata to include in LLM context for Query.
+Options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>“all”</cite>: Include all metadata.</p></li>
+<li><p><cite>“auto”</cite>: Includes these keys: [“date”, “file_path”, “input_type”, “keywords”, “chunk_id”, “page”, “source”, “title”, “total_pages”].</p></li>
+<li><p><cite>[“key1”, “key2”, …]</cite>: Include only these keys.</p></li>
+</ul>
+<p>NOTE: Not all parsers have all keys, only keys that exist are added to each document chunk.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Example key-values that some PDF parsers make:</dt><dd><ul class="simple">
+<li><p>author = Zane Durante, Bidipta Sarkar, Ran Gong, Rohan Taori, Yusuke Noda, Paul Tang, Ehsan Adeli, Shrinidhi Kowshika Lakshmikanth, Kevin Schulman, Arnold Milstein, Demetri Terzopoulos, Ade Famoti, Noboru Kuno, Ashley Llorens, Hoi Vo, Katsu Ikeuchi, Li Fei-Fei, Jianfeng Gao, Naoki Wake, Qiuyuan Huang</p></li>
+<li><p>chunk_id = 21</p></li>
+<li><p>creationDate = D:20240209020045Z</p></li>
+<li><p>creator = LaTeX with hyperref</p></li>
+<li><p>date = 2024-02-11 23:58:11.929155</p></li>
+<li><p>doc_hash = 5db1d548-7</p></li>
+<li><p>file_path = /tmp/gradio/15ac25af8610f21b9ab55252f1944841727ba157/2402.05929.pdf</p></li>
+<li><p>format = PDF 1.5</p></li>
+<li><p>hashid = 3cfb31cea127c745c72554f4714105dd</p></li>
+<li><p>head = An Interactive Agent Foundation Model</p></li>
+<li><p>Figure 2. We</p></li>
+<li><p>input_type = .pdf</p></li>
+<li><p>keywords = Machine Learning, ICML</p></li>
+<li><p>modDate = D:20240209020045Z</p></li>
+<li><p>order_id = 2</p></li>
+<li><p>page = 2</p></li>
+<li><p>parser = PyMuPDFLoader</p></li>
+<li><p>producer = pdfTeX-1.40.25</p></li>
+<li><p>source = /tmp/gradio/15ac25af8610f21b9ab55252f1944841727ba157/2402.05929.pdf</p></li>
+<li><p>subject = Proceedings of the International Conference on Machine Learning 2024</p></li>
+<li><p>time = 1707724691.929157</p></li>
+<li><p>title = An Interactive Agent Foundation Model</p></li>
+<li><p>total_pages = 22</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>add_chat_history_to_context</strong> (<em>bool</em>):</dt><dd><p>Include chat context when performing an action. Not supported when using CLI mode.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>add_search_to_context</strong> (<em>bool</em>):</dt><dd><p>Include web search in context as augmented prompt.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>context</strong> (<em>str</em>):</dt><dd><p>Default context to use (for system pre-context in gradio UI).
+<cite>context</cite> comes before <cite>chat_conversation</cite> and any document Q/A from <cite>text_context_list</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>iinput</strong> (<em>str</em>):</dt><dd><p>Default input for instruction-based prompts.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>allow_upload_to_user_data</strong> (<em>bool</em>):</dt><dd><p>Whether to allow file uploads to update shared vector db (UserData or custom user dbs).
+Ensure to pass <cite>user_path</cite> for the files uploaded to be moved to this location for linking.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>reload_langchain_state</strong> (<em>bool</em>):</dt><dd><p>Whether to reload <cite>langchain_modes.pkl</cite> file that contains any new user collections.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>allow_upload_to_my_data</strong> (<em>bool</em>):</dt><dd><p>Whether to allow file uploads to update personal vector db.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_url_upload</strong> (<em>bool</em>):</dt><dd><p>Whether to allow upload from URL.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_text_upload</strong> (<em>bool</em>):</dt><dd><p>Whether to allow upload of text.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_sources_list</strong> (<em>bool</em>):</dt><dd><p>Whether to allow list (or download for non-shared db) of list of sources for chosen db.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chunk</strong> (<em>bool</em>):</dt><dd><p>Whether to chunk data (True unless know data is already optimally chunked).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chunk_size</strong> (<em>int</em>):</dt><dd><p>Size of chunks, with typically top-4 passed to LLM, so needs to be in context length.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>top_k_docs</strong> (<em>int</em>):</dt><dd><p>For <cite>langchain_action</cite> query: number of chunks to give LLM.
+-1 : auto-fills context up to max_seq_len
+For <cite>langchain_action</cite> summarize/extract: number of document parts, like pages for PDF.
+There’s no such thing as chunks for summarization.
+-1 : auto-fills context up to max_seq_len</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>docs_ordering_type</strong> (<em>str</em>):</dt><dd><p>Type of ordering of docs.
+- “best_first”: Order by score so score is worst match near prompt.
+- “best_near_prompt” or “reverse_sort”: Reverse docs order so most relevant is closest to question.</p>
+<blockquote>
+<div><p>Best choice for sufficiently smart model, and truncation occurs for oldest context, so best then too.
+But smaller 6_9 models fail to use newest context and can get stuck on old information.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>“” or None (i.e. default) or “reverse_ucurve_sort”: Sort so most relevant is either near start or near end.
+Best to avoid « lost in middle » as well as avoid hallucinating off starting content that LLM focuses on a lot.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>auto_reduce_chunks</strong> (<em>bool</em>):</dt><dd><p>Whether to automatically reduce <cite>top_k_docs</cite> to fit context given prompt.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_chunks</strong> (<em>int</em>):</dt><dd><p>If <cite>top_k_docs=-1</cite>, maximum number of chunks to allow.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>headsize</strong> (<em>int</em>):</dt><dd><p>Maximum number of characters for head of document document for UI to show.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>n_jobs</strong> (<em>int</em>):</dt><dd><p>Number of processors to use when consuming documents (-1 = all, is default).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>n_gpus</strong> (<em>int or None</em>):</dt><dd><p>Number of GPUs (None = autodetect).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>clear_torch_cache_level</strong> (<em>int</em>):</dt><dd><ul class="simple">
+<li><p>0: never clear except where critically required.</p></li>
+<li><p>1: clear critical.</p></li>
+<li><p>2: clear aggressively and clear periodically every 20s to free-up GPU memory (may lead to lag in response).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_unstructured</strong> (<em>bool</em>):</dt><dd><p>Enable unstructured URL loader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_playwright</strong> (<em>bool</em>):</dt><dd><p>Enable PlayWright URL loader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_selenium</strong> (<em>bool</em>):</dt><dd><p>Enable Selenium URL loader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_scrapeplaywright</strong> (<em>bool</em>):</dt><dd><p>Enable Scrape PlayWright URL loader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_scrapehttp</strong> (<em>bool</em>):</dt><dd><p>Enable Scrape HTTP URL loader using aiohttp.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_pymupdf</strong> (<em>str</em>):</dt><dd><p>Enable PyMUPDF loader. “auto” means use first, use others if they are “auto” if no result.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_unstructured_pdf</strong> (<em>str</em>):</dt><dd><p>Enable Unstructured PDF loader. “auto” means use if pymupdf fails to get doc result.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_pypdf</strong> (<em>str</em>):</dt><dd><p>Enable PyPDF loader. “auto” means use if unstructured fails to get doc result.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_pdf_ocr</strong> (<em>str</em>):</dt><dd><p>Control OCR for PDF files.
+- “auto”: Only use OCR if normal text extraction fails. Useful for pure image-based PDFs with text.
+- “on”: Always perform OCR as additional parsing of same documents.
+- “off”: Don’t perform OCR (e.g., because it’s slow even if “auto” only would trigger if nothing else worked).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_pdf_doctr</strong> (<em>str</em>):</dt><dd><p>Whether to support doctr on PDFs.
+- “auto”: Use doctr if failed to get doc result so far.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>try_pdf_as_html</strong> (<em>bool</em>):</dt><dd><p>Try « PDF » as if HTML file, in case web link has .pdf extension but really is just HTML.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_ocr</strong> (<em>bool</em>):</dt><dd><p>Whether to support OCR on images.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_doctr</strong> (<em>bool</em>):</dt><dd><p>Whether to support doctr on images (using OCR better than enable_ocr=True).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_pix2struct</strong> (<em>bool</em>):</dt><dd><p>Whether to support pix2struct on images for captions.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_captions</strong> (<em>bool</em>):</dt><dd><p>Whether to support captions using BLIP for image files as documents.
+Preloads that model if pre_load_image_audio_models=True.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_llava</strong> (<em>bool</em>):</dt><dd><p>If LLaVa IP port is set, whether to use response for image ingestion.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_transcriptions</strong> (<em>bool</em>):</dt><dd><p>Whether to enable audio transcriptions (YouTube or from files).
+Preloaded if pre_load_image_audio_models=True.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>pre_load_image_audio_models</strong> (<em>bool</em>):</dt><dd><p>Whether to preload caption model (True), or load after forking parallel doc loader (False).
+Parallel loading disabled if preload and have images, to prevent deadlocking on CUDA context.
+Recommended if using larger caption model or doing production serving with many users to avoid GPU OOM if many would use model at the same time.
+Also applies to DocTR and ASR models.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>captions_model</strong> (<em>str</em>):</dt><dd><p>Which model to use for captions.
+- « Salesforce/blip-image-captioning-base »: continue capable.
+- « Salesforce/blip2-flan-t5-xl »: question/answer capable, 16GB state.
+- « Salesforce/blip2-flan-t5-xxl »: question/answer capable, 60GB state.
+Note: opt-based blip2 are not permissive license due to opt and Meta license restrictions.
+Disabled for CPU since BLIP requires CUDA.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>caption_gpu</strong> (<em>bool</em>):</dt><dd><p>If support caption, then use GPU if exists.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>caption_gpu_id</strong> (<em>str</em>):</dt><dd><p>Which GPU id to use, if “auto” then select 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>doctr_gpu</strong> (<em>bool</em>):</dt><dd><p>If support doctr, then use GPU if exists.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>doctr_gpu_id</strong> (<em>str</em>):</dt><dd><p>Which GPU id to use, if “auto” then select 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>llava_model</strong> (<em>str</em>):</dt><dd><p>IP:port for h2oai version of LLaVa gradio server for hosted image chat.
+- E.g. http://192.168.1.46:7861.
+- None means no such LLaVa support.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>llava_prompt</strong> (<em>str</em>):</dt><dd><p>Prompt passed to LLaVa for querying the image.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>image_file</strong> (<em>str</em>):</dt><dd><p>Initial image for UI (or actual image for CLI) Vision Q/A. Or list of images for some models.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>image_control</strong> (<em>str</em>):</dt><dd><p>Initial image for UI Image Control.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>asr_model</strong> (<em>str</em>):</dt><dd><p>Name of model for ASR, e.g., openai/whisper-medium or openai/whisper-large-v3 or distil-whisper/distil-large-v3 or microsoft/speecht5_asr.
+- whisper-medium uses about 5GB during processing, while whisper-large-v3 needs about 10GB during processing.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>asr_gpu</strong> (<em>bool</em>):</dt><dd><p>Whether to use GPU for ASR model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>asr_gpu_id</strong> (<em>str</em>):</dt><dd><p>Which GPU to put ASR model on (only used if preloading model).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>asr_use_better</strong> (<em>bool</em>):</dt><dd><p>Whether to use BetterTransformer.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>asr_use_faster</strong> (<em>bool</em>):</dt><dd><p>Whether to use faster_whisper package and models (loads normal whisper then unloads it, to get this into pipeline).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_stt</strong> (<em>bool</em>):</dt><dd><p>Whether to enable and show Speech-to-Text (STT) with microphone in UI.
+- Note STT model is always preloaded, but if stt_model=asr_model and pre_load_image_audio_models=True, then asr model is used as STT model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>stt_model</strong> (<em>str</em>):</dt><dd><p>Name of model for STT, can be same as asr_model, which will then use the same model for conserving GPU.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>stt_gpu</strong> (<em>bool</em>):</dt><dd><p>Whether to use GPU for STT model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>stt_gpu_id</strong> (<em>str</em>):</dt><dd><p>If not using asr_model, then which GPU to go on if using cuda.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>stt_continue_mode</strong> (<em>int</em>):</dt><dd><p>How to continue speech with button control.
+- 0: Always append audio regardless of start/stop of recording, so always appends in STT model for full STT conversion.
+- 1: If hit stop, text made so far is saved and audio cleared, so next recording will be separate text conversion.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_tts</strong> (<em>bool</em>):</dt><dd><p>Whether to enable TTS.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tts_gpu</strong> (<em>bool</em>):</dt><dd><p>Whether to use GPU if present for TTS.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tts_gpu_id</strong> (<em>str</em>):</dt><dd><p>Which GPU ID to use for TTS.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>tts_model</strong> (<em>str</em>):</dt><dd><p>Which model to use for TTS.
+- For microsoft, use “microsoft/speecht5_tts”.
+- For coqui.ai use one given by doing in python:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">from</span> <span class="pre">src.tts_coqui</span> <span class="pre">import</span> <span class="pre">list_models</span>
+<span class="pre">list_models()</span>
+<span class="pre">`</span></code>
+e.g., “tts_models/multilingual/multi-dataset/xtts_v2”.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Note that coqui.ai models are better, but some have non-commercial research license, while microsoft models are MIT.
+So coqui.ai ones can be used for non-commercial activities only, and one should agree to their license, see: <a class="reference external" href="https://coqui.ai/cpml">https://coqui.ai/cpml</a>
+Commercial use of xtts_v2 should be obtained through their product offering at <a class="reference external" href="https://coqui.ai/">https://coqui.ai/</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tts_gan_model</strong> (<em>str</em>):</dt><dd><p>For microsoft model, which gan model to use, e.g., “microsoft/speecht5_hifigan”.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tts_coquiai_deepspeed</strong> (<em>bool</em>):</dt><dd><p>For coqui.ai models, whether to use deepspeed for faster inference.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tts_coquiai_roles</strong> (<em>dict</em>):</dt><dd><p>Role dictionary mapping name (key) to wave file (value).
+If None, then just use default from get_role_to_wave_map().</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chatbot_role</strong> (<em>str</em>):</dt><dd><p>Default role for coqui models. If “None”, then don’t by default speak when launching h2oGPT for coqui model choice.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>speaker</strong> (<em>str</em>):</dt><dd><p>Default speaker for microsoft models. If “None”, then don’t by default speak when launching h2oGPT for microsoft model choice.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tts_language</strong> (<em>str</em>):</dt><dd><p>Default language for coqui models.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tts_speed</strong> (<em>float</em>):</dt><dd><p>Default speed of TTS, &lt; 1.0 (needs rubberband) for slower than normal, &gt; 1.0 for faster. Tries to keep fixed pitch.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tts_action_phrases</strong> (<em>list</em>):</dt><dd><p>Phrases or words to use as action word to trigger click of Submit hands-free assistant style.
+Set to None or empty list to avoid any special action words.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>tts_stop_phrases</strong> (<em>list</em>):</dt><dd><p>Like tts_action_phrases but to stop h2oGPT from speaking and generating.
+NOTE: Action/Stop phrases should be rare but easy (phonetic) words for Whisper to recognize.</p>
+<blockquote>
+<div><p>E.g. asking GPT-4 a couple good ones are [“Nimbus”] and [“Yonder”],
+and one can help Whisper by saying « Nimbus Clouds » which still works as « stop word » as trigger.</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>sst_floor</strong> (<em>float</em>):</dt><dd><p>Floor in wave square amplitude below which ignores the chunk of audio.
+This helps avoid long silence messing up the transcription.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>jq_schema</strong> (<em>str</em>):</dt><dd><p>Control json loader. By default “.[]” ingests everything in brute-force way, but better to match your schema.
+See: <a class="reference external" href="https://python.langchain.com/docs/modules/data_connection/document_loaders/json#using-jsonloader">https://python.langchain.com/docs/modules/data_connection/document_loaders/json#using-jsonloader</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>extract_frames</strong> (<em>int</em>):</dt><dd><p>How many unique frames to extract from video (if 0, then just do audio if audio type file as well).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_image</strong> (<em>bool</em>):</dt><dd><p>Whether to enable image generation model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_image_models</strong> (<em>list</em>):</dt><dd><p>Which image gen models to include.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>image_gpu_ids</strong> (<em>list</em>):</dt><dd><p>GPU ids to use for each visible image model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_llava_chat</strong> (<em>bool</em>):</dt><dd><p>Whether to use LLaVa model to chat directly against instead of just for ingestion.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_quality</strong> (<em>bool</em>):</dt><dd><p>Choose maximum quality ingestion with all available parsers.
+Pro: Catches document when some default parsers would fail.
+Pro: Enables DocTR that has much better OCR than Tesseract.
+Con: Fills DB with results from all parsers, so similarity search gives redundant results.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_heap_analytics</strong> (<em>bool</em>):</dt><dd><p>Toggle telemetry.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>heap_app_id</strong> (<em>str</em>):</dt><dd><p>App ID for Heap, change to your ID.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="index.html" class="btn btn-neutral float-left" title="Documentation h2oGPT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="expert.html" class="btn btn-neutral float-right" title="Paramètres Expert, Fonction Main (gen.py)" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2024, Skander Ben Sedrine.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paramètres Expert, Fonction Main (gen.py) &mdash; Documentation Documentation Expert 0.0.1</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5cd26065"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=d99ca74e"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="Fonction Main (gen.py)" href="main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Documentation Expert
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="main.html">Fonction Main (gen.py)</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Paramètres Expert, Fonction Main (gen.py)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Documentation Expert</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Paramètres Expert, Fonction Main (gen.py)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parametres-expert-fonction-main-gen-py">
+<h1>Paramètres Expert, Fonction Main (gen.py)<a class="headerlink" href="#parametres-expert-fonction-main-gen-py" title="Link to this heading"></a></h1>
+<p>Paramètres expert a modifier avant le lancement de l’application (modifiable dans la base de données)</p>
+<p>Paramètres :</p>
+<ul>
+<li><dl class="simple">
+<dt><strong>base_model</strong> (<em>str</em>):</dt><dd><p>Model HF-type name. If use –base_model to preload model, cannot unload in gradio in models tab.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>load_8bit</strong> (<em>bool</em>):</dt><dd><p>Load model in 8-bit using bitsandbytes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>load_4bit</strong> (<em>bool</em>):</dt><dd><p>Load model in 4-bit using bitsandbytes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>low_bit_mode</strong> (<em>int</em>):</dt><dd><p>0: no quantization config, 1: change compute, 2: nf4, 3: double quant, 4: 2 and 3.
+See: <a class="reference external" href="https://huggingface.co/docs/transformers/main_classes/quantization">Transformers Documentation</a>
+If using older bitsandbytes or transformers, 0 is required.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>load_half</strong> (<em>bool</em>):</dt><dd><p>Load model in float16 (None means auto, which means True unless t5 based model), otherwise specify bool.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>prompt_type</strong> (<em>str</em>):</dt><dd><p>Type of prompt, usually matched to fine-tuned model or plain for foundational model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>prompt_dict</strong> (<em>str</em>):</dt><dd><p>If prompt_type=custom, then expects (some) items returned by get_prompt(…, return_dict=True)</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>system_prompt</strong> (<em>str</em>):</dt><dd><p>Universal system prompt to use if model supports, like LLaMa2, regardless of prompt_type definition.</p>
+<p>Useful for langchain case to control behavior, or OpenAI and Replicate.</p>
+<p>If None, “None”, or “auto”, then for LLaMa or other models that internally have system_prompt, will use default for each model</p>
+<p>If “”, then no system prompt (no empty template given to model either, just no system part added at all)</p>
+<p>If some string not in [“None”, “auto”], then use that as system prompt</p>
+<p>Default is “”, no system_prompt, because often it hurts performance/accuracy</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>allow_chat_system_prompt</strong> (<em>bool</em>):</dt><dd><p>Whether to use conversation_history to pre-append system prompt.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>temperature</strong> (<em>float</em>):</dt><dd><p>Generation temperature.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>top_p</strong> (<em>float</em>):</dt><dd><p>Generation top_p.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>top_k</strong> (<em>int</em>):</dt><dd><p>Generation top_k.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>penalty_alpha</strong> (<em>float</em>):</dt><dd><p>Penalty_alpha&gt;0 and top_k&gt;1 enables contrastive search (not all models support).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>num_beams</strong> (<em>int</em>):</dt><dd><p>Generation number of beams.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>repetition_penalty</strong> (<em>float</em>):</dt><dd><p>Generation repetition penalty.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>num_return_sequences</strong> (<em>int</em>):</dt><dd><p>Generation number of sequences (1 forced for chat).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>do_sample</strong> (<em>bool</em>):</dt><dd><p>Generation sample. Enable for sampling for given temperature, top_p, top_k, else greedy decoding and then temperature, top_p, top_k not used. [More Info](<a class="reference external" href="https://huggingface.co/docs/transformers/main_classes/text_generation#transformers.GenerationConfig.do_sample">https://huggingface.co/docs/transformers/main_classes/text_generation#transformers.GenerationConfig.do_sample</a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>seed</strong> (<em>int</em>):</dt><dd><p>Seed (0 means random seed, &gt;0 uses that seed for sampling so reproducible even for sampling). None becomes 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_new_tokens</strong> (<em>int</em>):</dt><dd><p>Generation max new tokens.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>min_new_tokens</strong> (<em>int</em>):</dt><dd><p>Generation min tokens.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>early_stopping</strong> (<em>bool</em>):</dt><dd><p>Generation early stopping.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_time</strong> (<em>float</em>):</dt><dd><p>Maximum time to allow for generation.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>memory_restriction_level</strong> (<em>int</em>):</dt><dd><p>0 = no restriction to tokens or model, 1 = some restrictions on token 2 = HF like restriction 3 = very low memory case.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>debug</strong> (<em>bool</em>):</dt><dd><p>Enable debug mode.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>save_dir</strong> (<em>str</em>):</dt><dd><p>Directory chat data is saved to.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_seq_len</strong> (<em>int</em>):</dt><dd><p>Manually set maximum sequence length for the LLM.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_output_seq_len</strong> (<em>int</em>):</dt><dd><p>Manually set maximum output length for the LLM.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>src_lang</strong> (<em>str or None</em>):</dt><dd><p>Source languages to include if doing translation (None = all).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>tgt_lang</strong> (<em>str or None</em>):</dt><dd><p>Target languages to include if doing translation (None = all).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>close_button</strong> (<em>bool</em>):</dt><dd><p>Whether to show close button in system tab (if not public).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chat</strong> (<em>bool</em>):</dt><dd><p>Whether to enable chat mode with chat history.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chat_conversation</strong> (<em>list of tuples</em>):</dt><dd><p>List of tuples of (human, bot) conversation pre-appended to existing chat when using instruct/chat models. Requires also <cite>add_chat_history_to_context = True</cite>. It does <em>not</em> require <cite>chat=True</cite>, so works with nochat_api etc.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>stream_output</strong> (<em>bool</em>):</dt><dd><p>Whether to stream output.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>async_output</strong> (<em>bool</em>):</dt><dd><p>Whether to do asyncio handling.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>num_async</strong> (<em>int</em>):</dt><dd><p>Number of simultaneously allowed asyncio calls to make for async_output. Too many will overload the inference server, too few will be too slow.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>login_mode_if_model0</strong> (<em>bool</em>):</dt><dd><p>Set to True to load –base_model after client logs in, to be able to free GPU memory when model is swapped.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>input_lines</strong> (<em>int</em>):</dt><dd><p>How many input lines to show for chat box (&gt;1 forces shift-enter for submit, else enter is submit).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>large_file_count_mode</strong> (<em>bool</em>):</dt><dd><p>Whether to force manual update to UI of drop-downs, good idea if millions of chunks or documents.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>auth</strong> (<em>list</em>):</dt><dd><p>Gradio auth for launcher in the form [(user1, pass1), (user2, pass2), …]. Examples:
+- <cite>–auth=[(“jon”,”password”)]</cite> with no spaces
+- <cite>–auth= »[(“jon”, “password)())(“)] »</cite> so any special characters can be used
+- <cite>–auth=auth.json</cite> to specify persisted state file with name auth.json (auth_filename then not required)
+- <cite>–auth=””</cite> will use default auth.json as file name for persisted state file (auth_filename good idea to control location)
+- <cite>–auth=None</cite> will use no auth, but still keep track of auth state, just not from logins</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hyde_level</strong> (<em>int</em>):</dt><dd><p>HYDE level for HYDE approach (<a class="reference external" href="https://arxiv.org/abs/2212.10496">https://arxiv.org/abs/2212.10496</a>).
+- <cite>0</cite>: No HYDE.
+- <cite>1</cite>: Use non-document-based LLM response and original query for embedding query.
+- <cite>2</cite>: Use document-based LLM response and original query for embedding query.
+- <cite>3+</cite>: Continue iterations of embedding prior answer and getting new response.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hyde_show_only_final</strong> (<em>bool</em>):</dt><dd><p>Whether to show only the last result of HYDE, not intermediate steps.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_models</strong> (<em>list or None</em>):</dt><dd><p>Which models in model_lock list to show by default. Takes integers of position in model_lock (model_states) list or strings of base_model names. Ignored if model_lock not used. For nochat API, this is single item within a list for model by name or by index in model_lock. If None, then just use the first model in model_lock list. If model_lock not set, use the model selected by CLI –base_model etc. Note that unlike h2ogpt_key, this visible_models only applies to this running h2oGPT server, and the value is not used to access the inference server. If need a visible_models for an inference server, then use –model_lock and group together.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_visible_models</strong> (<em>int</em>):</dt><dd><p>Maximum visible models to allow to select in UI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_raw_chunks</strong> (<em>int</em>):</dt><dd><p>Maximum number of chunks to show in UI when asking for raw DB text from documents/collection.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>extra_model_options</strong> (<em>str</em>):</dt><dd><p>Extra models to show in the list in Gradio.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_mode</strong> (<em>str</em>):</dt><dd><p>Data source to include. Choose « UserData » to only consume files from <cite>make_db.py</cite>.
+If not passed, then chosen to be first <cite>langchain_modes</cite>, else <cite>langchain_mode-&gt;Disabled</cite> is set if no <cite>langchain_modes</cite> either.
+WARNING: <cite>wiki_full</cite> requires extra data processing via <cite>read_wiki_full.py</cite> and requires really good workstation to generate db, unless already present.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>user_path</strong> (<em>str</em>):</dt><dd><p>User path to glob from to generate db for vector search, for “UserData” langchain mode.
+If already have db, any new/changed files are added automatically if path set, does not have to be the same path used for prior db sources.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_modes</strong> (<em>list</em>):</dt><dd><p>DBs to generate at launch to be ready for LLM.
+Apart from additional user-defined collections, can include [“wiki”, “wiki_full”, “UserData”, “MyData”, “github h2oGPT”, “DriverlessAI docs”].
+But <cite>wiki_full</cite> is expensive and requires preparation.
+To allow personal space only live in session, add “MyData” to list.
+Default: If only want to consume local files, e.g. prepared by <cite>make_db.py</cite>, only include [“UserData”].
+If have own user modes, need to add these here or add in UI.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_mode_paths</strong> (<em>dict</em>):</dt><dd><p>Dict of <cite>langchain_mode</cite> keys and disk path values to use for source of documents.
+E.g. « {“UserData2”: “userpath2”} ».
+A disk path can be None, e.g. –langchain_mode_paths= »{“UserData2”: None} » even if existing DB, to avoid new documents being added from that path, source links that are on disk still work.
+If <cite>–user_path</cite> was passed, that path is used for “UserData” instead of the value in this dict.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_mode_types</strong> (<em>dict</em>):</dt><dd><p>Dict of <cite>langchain_mode</cite> keys and database types.
+E.g. python generate.py –base_model=llama –langchain_modes=[“TestData”] –langchain_mode_types= »{“TestData”:”shared”} ».
+The type is attempted to be inferred if the directory already exists, then don’t have to pass this.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>langchain_action</strong> (<em>str</em>):</dt><dd><p>Mode langchain operations on documents.
+Options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Query: Make query of document(s)</p></li>
+<li><p>Summarize or Summarize_map_reduce: Summarize document(s) via map_reduce</p></li>
+<li><p>Summarize_all: Summarize document(s) using entire document at once</p></li>
+<li><p>Summarize_refine: Summarize document(s) using entire document, and try to refine before returning summary</p></li>
+<li><p>Extract: Extract information from document(s) via map (no reduce)</p></li>
+</ul>
+</div></blockquote>
+<p>Currently enabled are Query, Summarize, and Extract.
+Summarize is a « map reduce » and extraction is « map ». That is, map returns a text output (roughly) per input item, while reduce reduces all maps down to single text output.
+The « roughly » refers to the fact that if one has docs_token_handling=”split_or_merge”, then we split or merge chunks, so you will get a map for some optimal-sized chunks given the model size. If you choose docs_token_handling=”chunk”, then you get back a map for each chunk you give, but you should ensure the model token limit is not exceeded yourself.
+Summarize is useful when wanting to reduce down to single text, while Extract is useful when you want to operate the prompt on blocks of data and get back a result per block.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>langchain_agents</strong> (<em>list</em>):</dt><dd><p>Which agents to use.
+Options: “search” (Use Web Search as context for LLM response, e.g. SERP if have <cite>SERPAPI_API_KEY</cite> in env)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_langchain_actions</strong> (<em>bool</em>):</dt><dd><p>Which actions to allow.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>visible_langchain_agents</strong> (<em>bool</em>):</dt><dd><p>Which agents to allow.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_subset</strong> (<em>str</em>):</dt><dd><p>Default document choice when taking a subset of the collection.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_choice</strong> (<em>str</em>):</dt><dd><p>Chosen document(s) by internal name. “All” means use all docs.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_source_substrings</strong> (<em>list</em>):</dt><dd><p>Substrings in the list to search in source names in metadata for chroma dbs.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_source_substrings_op</strong> (<em>str</em>):</dt><dd><p>“and” or “or” for source search words.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_content_substrings</strong> (<em>list</em>):</dt><dd><p>Substrings in the list to search in content for chroma dbs.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>document_content_substrings_op</strong> (<em>str</em>):</dt><dd><p>“and” or “or” for content search words.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_llm_if_no_docs</strong> (<em>bool</em>):</dt><dd><p>Whether to use LLM even if no documents, when <cite>langchain_mode=UserData</cite> or <cite>MyData</cite> or custom.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>db_type</strong> (<em>str</em>):</dt><dd><p>Type of database to use.
+Options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“faiss”: in-memory database</p></li>
+<li><p>“chroma”: for chroma &gt;= 0.4</p></li>
+<li><p>“chroma_old”: for chroma &lt; 0.4 (recommended for large collections)</p></li>
+<li><p>“weaviate”: for persisted on disk</p></li>
+<li><p>“qdrant”: for a Qdrant server or an in-memory instance</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hf_embedding_model</strong> (<em>str</em>):</dt><dd><p>Which HF embedding model to use for the vector database.
+Default is instructor-large with 768 parameters per embedding if have GPUs, else all-MiniLM-L6-v2 if no GPUs.
+Can also choose simpler model with 384 parameters per embedding: « sentence-transformers/all-MiniLM-L6-v2 ».
+Can also choose even better embedding with 1024 parameters: “hkunlp/instructor-xl”.
+We support automatically changing embeddings for chroma, with a backup of db made if this is done.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>answer_with_sources</strong> (<em>bool</em>):</dt><dd><p>Whether to determine (and return) sources.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>append_sources_to_answer</strong> (<em>bool</em>):</dt><dd><p>Whether to place source information in the chat response (ignored by LLM). Always disabled for API.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>append_sources_to_chat</strong> (<em>bool</em>):</dt><dd><p>Whether to place sources information in the chat response but in a separate chat turn (ignored by LLM). Always disabled for API.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>pre_prompt_query</strong> (<em>str</em>):</dt><dd><p>Prompt before documents to query. If <cite>None</cite>, then use internal defaults.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>prompt_query</strong> (<em>str</em>):</dt><dd><p>Prompt after documents to query. If <cite>None</cite>, then use internal defaults.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>pre_prompt_summary</strong> (<em>str</em>):</dt><dd><p>Prompt before documents to summarize/extract from. If <cite>None</cite>, then use internal defaults.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>prompt_summary</strong> (<em>str</em>):</dt><dd><p>Prompt after documents to summarize/extract from. If <cite>None</cite>, then use internal defaults.
+For summarize/extract, it is normal to have an empty query (nothing added in « ask anything » in the UI or empty string in the API).
+If a query is passed, the template is « Focusing on %s, %s » % (query, prompt_summary).
+If both query and input are passed, the template is « Focusing on %s, %s, %s » % (query, input, prompt_summary).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>hyde_llm_prompt</strong> (<em>str</em>):</dt><dd><p>Hyde prompt for the first step when using LLM.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>allow_upload_to_my_data</strong> (<em>bool</em>):</dt><dd><p>Whether to allow file uploads to update personal vector db.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_url_upload</strong> (<em>bool</em>):</dt><dd><p>Whether to allow upload from URL.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_text_upload</strong> (<em>bool</em>):</dt><dd><p>Whether to allow upload of text.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_sources_list</strong> (<em>bool</em>):</dt><dd><p>Whether to allow list (or download for non-shared db) of list of sources for chosen db.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chunk</strong> (<em>bool</em>):</dt><dd><p>Whether to chunk data (True unless know data is already optimally chunked).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>chunk_size</strong> (<em>int</em>):</dt><dd><p>Size of chunks, with typically top-4 passed to LLM, so needs to be in context length.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>top_k_docs</strong> (<em>int</em>):</dt><dd><p>For <cite>langchain_action</cite> query: number of chunks to give LLM.
+-1 : auto-fills context up to max_seq_len
+For <cite>langchain_action</cite> summarize/extract: number of document parts, like pages for PDF.
+There’s no such thing as chunks for summarization.
+-1 : auto-fills context up to max_seq_len</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>docs_ordering_type</strong> (<em>str</em>):</dt><dd><p>Type of ordering of docs.
+- “best_first”: Order by score so score is worst match near prompt.
+- “best_near_prompt” or “reverse_sort”: Reverse docs order so most relevant is closest to question.</p>
+<blockquote>
+<div><p>Best choice for sufficiently smart model, and truncation occurs for oldest context, so best then too.
+But smaller 6_9 models fail to use newest context and can get stuck on old information.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>“” or None (i.e. default) or “reverse_ucurve_sort”: Sort so most relevant is either near start or near end.
+Best to avoid « lost in middle » as well as avoid hallucinating off starting content that LLM focuses on a lot.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>auto_reduce_chunks</strong> (<em>bool</em>):</dt><dd><p>Whether to automatically reduce <cite>top_k_docs</cite> to fit context given prompt.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>max_chunks</strong> (<em>int</em>):</dt><dd><p>If <cite>top_k_docs=-1</cite>, maximum number of chunks to allow.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_pymupdf</strong> (<em>str</em>):</dt><dd><p>Enable PyMUPDF loader. “auto” means use first, use others if they are “auto” if no result.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_unstructured_pdf</strong> (<em>str</em>):</dt><dd><p>Enable Unstructured PDF loader. “auto” means use if pymupdf fails to get doc result.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>use_pypdf</strong> (<em>str</em>):</dt><dd><p>Enable PyPDF loader. “auto” means use if unstructured fails to get doc result.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_pdf_ocr</strong> (<em>str</em>):</dt><dd><p>Control OCR for PDF files.
+- “auto”: Only use OCR if normal text extraction fails. Useful for pure image-based PDFs with text.
+- “on”: Always perform OCR as additional parsing of same documents.
+- “off”: Don’t perform OCR (e.g., because it’s slow even if “auto” only would trigger if nothing else worked).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_pdf_doctr</strong> (<em>str</em>):</dt><dd><p>Whether to support doctr on PDFs.
+- “auto”: Use doctr if failed to get doc result so far.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>try_pdf_as_html</strong> (<em>bool</em>):</dt><dd><p>Try « PDF » as if HTML file, in case web link has .pdf extension but really is just HTML.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_ocr</strong> (<em>bool</em>):</dt><dd><p>Whether to support OCR on images.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_doctr</strong> (<em>bool</em>):</dt><dd><p>Whether to support doctr on images (using OCR better than enable_ocr=True).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>enable_pix2struct</strong> (<em>bool</em>):</dt><dd><p>Whether to support pix2struct on images for captions.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="main.html" class="btn btn-neutral float-left" title="Fonction Main (gen.py)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2024, Skander Ben Sedrine.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
