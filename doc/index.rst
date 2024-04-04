@@ -1,14 +1,23 @@
-.. Example documentation master file, created by
-   sphinx-quickstart on Sat Sep 23 20:35:12 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Documentation h2oGPT
+================================================
 
-Welcome to Example's documentation!
-===================================
+
+Contenu Principal H2O
+------------
+Cette section concerne la documentation de H2oGPT et toutes les ressources trouvées dans le repo github + le code.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-   some-feature.md
-   another-feature.md
+   main
+   
+
+Contenu Personnalisé
+--------------
+Cette section concerne toutes les personnalisations et les elements essentiels pour le Projet.
+
+.. toctree::
+   :maxdepth: 2
+
+   expert
+
